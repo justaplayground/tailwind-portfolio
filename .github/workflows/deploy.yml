@@ -67,8 +67,8 @@ jobs:
           # Uncomment the line below if build as a standalone
           # sudo ln -sf /etc/nginx/includes/projects/${{ env.PROJECT_NAME }}.conf /etc/nginx/includes/${{ env.PROJECT_NAME }}.conf 
           # Update the main nginx config file
-          sed -i "s/\${ROOT_PROJECT_NAME}/${{ env.PROJECT_NAME }}/g" /etc/nginx/sites-enabled/${{ env.ORIGIN_SERVER_NAME }}
-          sudo nginx -t
+          sudo sed -i "s/\${ROOT_PROJECT_NAME}/${{ env.PROJECT_NAME }}/g" /etc/nginx/sites-available/${{ env.ORIGIN_SERVER_NAME }}
+          sudo nginx -tÍ
           sudo systemctl restart nginx
 
       - name: Cleanup downloaded artifacts
