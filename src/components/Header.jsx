@@ -1,11 +1,5 @@
 import { useState, useEffect } from 'react'
-import {
-  FaGithub,
-  FaTwitter,
-  FaChevronRight,
-  FaBars,
-  FaTimes,
-} from 'react-icons/fa'
+import { FaGithub, FaChevronRight, FaBars, FaTimes, FaLinkedin } from 'react-icons/fa'
 import { CgTrello } from 'react-icons/cg'
 
 const Header = () => {
@@ -127,9 +121,7 @@ const Header = () => {
   return (
     <header
       className={`fixed left-0 right-0 top-0 z-[100] transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-md'
-          : ''
+        isScrolled ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-md' : ''
       }`}
     >
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -141,8 +133,8 @@ const Header = () => {
                   <div className="h-4 w-1 rotate-12 rounded-full bg-white"></div>
                 </div>
                 <div className="hidden text-xl font-bold sm:block">
-                  <span className="text-slate-900 dark:text-slate-200">enji</span>
-                  <span className="text-violet-500">dev</span>
+                  <span className="text-slate-900 dark:text-slate-200">Dan</span>
+                  <span className="text-violet-500">Dan</span>
                 </div>
               </a>
             </div>
@@ -151,15 +143,15 @@ const Header = () => {
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <div className="hidden sm:flex items-center">
               <a
-                href="https://twitter.com/enjidev"
+                href="https://linkedin.com/in/mashimar-2001/"
                 target="_blank"
                 rel="noreferrer"
                 className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
               >
-                <FaTwitter className="h-5 w-5" />
+                <FaLinkedin className="h-5 w-5" />
               </a>
               <a
-                href="https://github.com/enjidev"
+                href="https://github.com/giangntse150746"
                 target="_blank"
                 rel="noreferrer"
                 className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
@@ -185,11 +177,7 @@ const Header = () => {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
               >
-                {isMenuOpen ? (
-                  <FaTimes className="h-6 w-6" />
-                ) : (
-                  <FaBars className="h-6 w-6" />
-                )}
+                {isMenuOpen ? <FaTimes className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
               </button>
             </div>
           </div>
@@ -205,4 +193,4 @@ const Header = () => {
   )
 }
 
-export default Header 
+export default Header
