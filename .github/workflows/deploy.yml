@@ -62,12 +62,16 @@ jobs:
         run: |
           sudo rm -rf /var/www/${{ env.PROJECT_NAME }}/dist
           sudo cp -r dist /var/www/${{ env.PROJECT_NAME }}/dist
-          # Currently using modular style nginx config
-          sudo cp -r dist/nginx.modular.conf /etc/nginx/includes/projects/${{ env.PROJECT_NAME }}.conf
-          # Uncomment the line below if build as a standalone
-          # sudo ln -sf /etc/nginx/includes/projects/${{ env.PROJECT_NAME }}.conf /etc/nginx/includes/${{ env.PROJECT_NAME }}.conf 
-          # Update the main nginx config file
+          # Update the main nginx config file to make this project as Root
+          sudo rm /etc/nginx/includes/projects/${{ env.PROJECT_NAME }}.conf || true
           sudo sed -i "s/\${ROOT_PROJECT_NAME}/${{ env.PROJECT_NAME }}/g" /etc/nginx/sites-available/${{ env.ORIGIN_SERVER_NAME }}
+
+          # Currently using modular style nginx config
+          # sudo cp -r dist/nginx.modular.conf /etc/nginx/includes/projects/${{ env.PROJECT_NAME }}.conf
+          
+          # Uncomment the line below if build as a standalone
+          # sudo ln -sf /etc/nginx/includes/projects/${{ env.PROJECT_NAME }}.conf /etc/nginx/includes/${{ env.PROJECT_NAME }}.conf
+
           sudo nginx -tÍ
           sudo systemctl restart nginx
 
