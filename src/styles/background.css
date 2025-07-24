@@ -1,4 +1,4 @@
-.background-grid {
+/* .background-grid {
   position: relative;
   z-index: 0;
   --tw-bg-opacity: 1;
@@ -77,4 +77,4 @@
 .background-image--fade-out {
   -webkit-mask-image: linear-gradient(#000, #000, transparent);
   mask-image: linear-gradient(#000, #000, transparent);
-}
+} */
