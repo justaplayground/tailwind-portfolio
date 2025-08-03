@@ -1,11 +1,41 @@
 import { useState, useEffect } from 'react'
-import { FaGithub, FaChevronRight, FaBars, FaTimes, FaLinkedin } from 'react-icons/fa'
-import { CgTrello } from 'react-icons/cg'
+import { Link } from 'react-router-dom'
+import { FaGithub, FaBars, FaTimes, FaLinkedin, FaCodepen } from 'react-icons/fa'
+import { motion, AnimatePresence } from 'framer-motion'
+import { cn } from '../utils'
+
+const socialLinks = [
+  {
+    icon: <FaGithub className="h-6 w-6" />,
+    color: '', // preserve the default color
+    hoverColor: '', // preserve the default color
+    href: 'https://github.com/giangntse150746',
+  },
+  {
+    icon: <FaLinkedin className="h-6 w-6" />,
+    color: '', // preserve the default color
+    hoverColor: 'hover:text-cyan-700 dark:hover:text-cyan-600',
+    href: 'https://linkedin.com/in/mashimar-2001/',
+  },
+  {
+    icon: <FaCodepen className="h-6 w-6" />,
+    color: '', // preserve the default color
+    hoverColor: 'hover:text-black dark:hover:text-white',
+    href: 'https://codepen.io/giangntse150746',
+  },
+]
+
+const quickAccess = [
+  {
+    key: '⌘K',
+    label: 'Quick Access',
+    href: '/search',
+  },
+]
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isWorkMenuOpen, setIsWorkMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,177 +49,187 @@ const Header = () => {
 
   const navLinks = (
     <>
-      <a
-        href="/projects"
-        className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-      >
-        Projects
-      </a>
-      <a
-        href="/blog"
-        className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-      >
-        Blog
-      </a>
-      <a
-        href="/til"
-        className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-      >
-        T.I.L
-      </a>
-      <div className="relative">
-        <button
-          onClick={() => setIsWorkMenuOpen(!isWorkMenuOpen)}
-          className="lg:hidden px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center"
+      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        <Link
+          to="/projects"
+          className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200"
         >
-          Work <FaChevronRight className="w-3 h-3 ml-1 transform" />
-        </button>
-        {isWorkMenuOpen && (
-          <div className="lg:hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
-            <div
-              className="py-1"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="options-menu"
-            >
-              <a
-                href="/work/skills-and-tools"
-                className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                role="menuitem"
-              >
-                Skills & Tools
-              </a>
-              <a
-                href="/work/experience"
-                className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                role="menuitem"
-              >
-                Experience
-              </a>
-              <a
-                href="/work/studio"
-                className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                role="menuitem"
-              >
-                Studio
-              </a>
-              <a
-                href="/work/contact"
-                className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                role="menuitem"
-              >
-                Contact
-              </a>
-            </div>
-          </div>
-        )}
-        <div className="hidden lg:flex items-center space-x-2 text-sm text-gray-700 dark:text-gray-300">
-          <span className="font-medium">Work</span>
-          <FaChevronRight className="w-3 h-3" />
-          <a
-            href="/work/skills-and-tools"
-            className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-          >
-            Skills & Tools
-          </a>
-          <span>·</span>
-          <a
-            href="/work/experience"
-            className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-          >
-            Experience
-          </a>
-          <span>·</span>
-          <a
-            href="/work/studio"
-            className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-          >
-            Studio
-          </a>
-          <span>·</span>
-          <a
-            href="/work/contact"
-            className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-          >
-            Contact
-          </a>
-        </div>
-      </div>
+          Projects
+        </Link>
+      </motion.div>
+      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        <Link
+          to="/blog"
+          className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200"
+        >
+          Blog
+        </Link>
+      </motion.div>
+      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        <Link
+          to="/til"
+          className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200"
+        >
+          T.I.L
+        </Link>
+      </motion.div>
+      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        <a
+          href="/work/skills-and-tools"
+          className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200"
+        >
+          Work
+        </a>
+      </motion.div>
     </>
   )
 
   return (
-    <header
-      className={`fixed left-0 right-0 top-0 z-[100] transition-all duration-300 ${
-        isScrolled ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-md' : ''
+    <motion.header
+      className={`fixed left-0 right-0 top-0 z-[100] transition-all duration-300 border-b border-gray-200/0 dark:border-gray-700/0 ${
+        isScrolled
+          ? 'bg-white/50 dark:bg-gray-900/50 backdrop-blur-md shadow-lg border-gray-200/50 dark:border-gray-700/50'
+          : ''
       }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
     >
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex flex-1 items-center justify-start">
             <div className="flex flex-shrink-0 items-center">
-              <a href="/" className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-violet-500 bg-violet-500">
-                  <div className="h-4 w-1 rotate-12 rounded-full bg-white"></div>
-                </div>
-                <div className="hidden text-xl font-bold sm:block">
-                  <span className="text-slate-900 dark:text-slate-200">Dan</span>
-                  <span className="text-violet-500">Dan</span>
-                </div>
-              </a>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link to="/" className="flex items-center gap-3">
+                  <motion.div
+                    className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg"
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <span className="text-white font-bold text-lg">D</span>
+                  </motion.div>
+                  <div className="hidden text-xl font-bold sm:block">
+                    <span className="text-gray-900 dark:text-gray-100">Dan</span>
+                    <span className="text-blue-500">Dan</span>
+                  </div>
+                </Link>
+              </motion.div>
             </div>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-4">{navLinks}</div>
+            <div className="hidden sm:ml-8 sm:flex sm:space-x-6">{navLinks}</div>
           </div>
+
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <div className="hidden sm:flex items-center">
-              <a
-                href="https://linkedin.com/in/mashimar-2001/"
-                target="_blank"
-                rel="noreferrer"
-                className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
-              >
-                <FaLinkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="https://github.com/giangntse150746"
-                target="_blank"
-                rel="noreferrer"
-                className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
-              >
-                <FaGithub className="h-5 w-5" />
-              </a>
-              <div className="mx-2 h-4 w-px bg-gray-300 dark:bg-gray-600"></div>
+            <div className="hidden sm:flex items-center space-x-4">
+              {socialLinks.map((link) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={cn(
+                    'p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200',
+                    link.color,
+                    link.hoverColor
+                  )}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  {link.icon}
+                </motion.a>
+              ))}
+
+              <div className="h-6 w-px bg-gray-300 dark:bg-gray-600"></div>
+
+              {quickAccess.map((item) => (
+                <motion.button
+                  type="button"
+                  key={item.key}
+                  className="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="hidden lg:inline">{item.label}</span>
+                  <kbd className="rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-2 py-1 text-xs font-mono">
+                    {item.key}
+                  </kbd>
+                </motion.button>
+              ))}
             </div>
-            <button
-              type="button"
-              className="flex items-center gap-2 rounded-md bg-gray-200/50 px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300/70 dark:bg-gray-800/50 dark:text-gray-100 dark:hover:bg-gray-700/50"
-            >
-              <CgTrello className="h-5 w-5" />
-              <div className="hidden items-center gap-2 text-xs font-bold xl:flex dark:font-normal">
-                Quick Access
-                <kbd className="rounded border border-b-2 border-gray-400 bg-gray-300 px-1 py-0.5 font-mono dark:border-gray-500 dark:bg-gray-900">
-                  Q
-                </kbd>
-              </div>
-            </button>
+
             <div className="sm:hidden ml-4">
-              <button
+              <motion.button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
+                className="p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
-                {isMenuOpen ? <FaTimes className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
-              </button>
+                <AnimatePresence mode="wait">
+                  {isMenuOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <FaTimes className="h-6 w-6" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <FaBars className="h-6 w-6" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
             </div>
           </div>
         </div>
       </div>
 
-      {isMenuOpen && (
-        <div className="sm:hidden" id="mobile-menu">
-          <div className="space-y-1 px-2 pt-2 pb-3">{navLinks}</div>
-        </div>
-      )}
-    </header>
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            className="sm:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200/20 dark:border-gray-700/20"
+            id="mobile-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="px-4 py-4 space-y-3">
+              {navLinks}
+              <div className="pt-4 border-t border-gray-200/20 dark:border-gray-700/20">
+                <div className="flex items-center justify-center space-x-4">
+                  {socialLinks.map((link) => (
+                    <motion.a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={cn(
+                        'p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200',
+                        link.color,
+                        link.hoverColor
+                      )}
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      {link.icon}
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   )
 }
 
