@@ -8,9 +8,16 @@ export default defineConfig({
   server: {
     host: '::',
     port: 80,
-    hmr: {
-      overlay: false,
-    },
+    // proxy: {
+    //   '/api': {
+    //     target: process.env.VITE_API_URL,
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/api/, ''),
+    //   },
+    // },
+    // hmr: {
+    //   overlay: false,
+    // },
   },
   plugins: [react(), tailwindcss()],
   exclude: ['ref/*'],
@@ -50,15 +57,7 @@ export default defineConfig({
     reportCompressedSize: false,
   },
   optimizeDeps: {
-    include: [
-      'react',
-      'react-dom',
-      'react-router-dom',
-      'framer-motion',
-      'clsx',
-      'dayjs',
-      'tailwind-merge',
-    ],
+    include: ['react', 'react-dom', 'react-router-dom', 'framer-motion', 'clsx', 'dayjs', 'tailwind-merge'],
   },
   css: {
     devSourcemap: false,
