@@ -1,9 +1,9 @@
-name: 🚀 Deploy as a part of microservices system to Nginx | Dellbuntu
+name: 🚀 Deploy as a subdomain to Nginx | Dellbuntu
 
 on:
   push:
     branches:
-      - main
+      - release
 
 permissions:
   actions: write
@@ -29,9 +29,9 @@ jobs:
         run: |
           npm i --legacy-peer-deps
           npm run build
-          # Replace placeholder with actual project name
-          sed -i "s/\${PROJECT_NAME}/${{ env.PROJECT_NAME }}/g" nginx.modular.conf
-          cp nginx.modular.conf dist/
+          # Replace placeholder with actual server name
+          sed -i "s/\${NGINX_SERVER_NAME}/${{ env.PROJECT_NAME }}.${{ env.ORIGIN_SERVER_NAME }}/g" nginx.conf
+          cp nginx.conf dist/
 
       - name: Upload built artifacts
         uses: actions/upload-artifact@v4
@@ -66,7 +66,7 @@ jobs:
 
           # Currently using modular style nginx config
           # sudo cp -r dist/nginx.modular.conf /etc/nginx/includes/projects/${{ env.PROJECT_NAME }}.conf
-
+          
           # Uncomment the line below if build as a standalone
           # sudo ln -sf /etc/nginx/includes/projects/${{ env.PROJECT_NAME }}.conf /etc/nginx/includes/${{ env.PROJECT_NAME }}.conf
 

@@ -7,7 +7,7 @@ import path from 'path'
 export default defineConfig({
   server: {
     host: '::',
-    port: 80,
+    port: 8080,
     // proxy: {
     //   '/api': {
     //     target: process.env.VITE_API_URL,
